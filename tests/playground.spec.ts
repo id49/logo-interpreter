@@ -17,6 +17,21 @@ test.beforeEach(async ({ page }) => {
 test('square end-to-end, syntax highlighting, both turtle appearances and clean state', async ({
   page,
 }) => {
+  // Isolate renderer snapshots from font metrics and fractional layout offsets.
+  // Pin both size and screen position so macOS and Linux capture the same pixels.
+  const canvasFixture = await page.addStyleTag({
+    content: `#canvas {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 600px;
+      height: 480px;
+      z-index: 1000;
+      pointer-events: none;
+    }`,
+  });
+  await expect(page.locator('#canvas')).toHaveAttribute('width', '600');
+  await expect(page.locator('#canvas')).toHaveAttribute('height', '480');
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
   await expect(page.locator('.cm-content')).toContainText('repita');
@@ -32,6 +47,7 @@ test('square end-to-end, syntax highlighting, both turtle appearances and clean 
   await expect(page.locator('#canvas')).toHaveScreenshot('triangle-square.png');
   await page.locator('#appearance').selectOption('turtle');
   await expect(page.locator('#canvas')).toHaveScreenshot('turtle-square.png');
+  await canvasFixture.evaluate((style) => style.parentNode?.removeChild(style));
   await page.screenshot({ path: 'test-results/desktop.png', fullPage: true });
   expect(errors).toEqual([]);
 });

@@ -76,3 +76,9 @@ O catálogo passou de 4 para 15 programas, cinco por nível (Iniciante, Intermed
 ## Navegação pelo grid
 
 Arraste com captura de ponteiro para mouse/toque, botão Centralizar vista e atalhos de teclado implementados. O renderer reposiciona desenho, eixos e linhas do grid juntos, cobrindo a área visível mesmo com a origem fora da tela. Testes verificam transformação, preservação do estado Logo, captura/liberação, cancelamento, botões secundários e teclado. `npm run check` passou com 248 testes. Arraste e centralização foram verificados visualmente na prévia aberta, com o desenho preservado e coordenadas inalteradas. Toque foi implementado com Pointer Events; não foi testado em dispositivo físico.
+
+## Correção de portabilidade dos snapshots na CI
+
+A primeira execução no Ubuntu passou nas verificações de código, mas falhou no snapshot do canvas: a referência tinha 639×474 px e a captura teve 639×473 px. O teste visual agora fixa exclusivamente seu canvas em 600×480 px, com posição inteira (0,0), isolando tamanho e recorte das métricas de fonte e do layout responsivo. As duas referências foram regeneradas e revisadas, sem aumentar a tolerância de comparação. O estilo temporário é removido ao final do teste; o layout do produto não foi alterado.
+
+Validação local da correção: `npm run check`, os 20 testes E2E sem atualizar snapshots, o teste do bundle de produção e a verificação de formatação.
