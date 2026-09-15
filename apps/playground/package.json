@@ -1,0 +1,26 @@
+{
+  "name": "@logo/playground",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@logo/logo": "*",
+    "@logo/turtle": "*",
+    "@logo/canvas-renderer": "*",
+    "@codemirror/state": "^6.5.0",
+    "@codemirror/view": "^6.38.0",
+    "@codemirror/language": "^6.11.0",
+    "@codemirror/lint": "^6.8.0",
+    "@codemirror/commands": "^6.8.0",
+    "@lezer/highlight": "^1.2.1"
+  },
+  "devDependencies": {
+    "vite": "^7.1.0"
+  }
+}

@@ -1,0 +1,4 @@
+to quadrado :lado
+repeat 4 [forward :lado right 90]
+end
+quadrado 40

@@ -1,0 +1,4 @@
+to dobro :n
+output :n * 2
+end
+print dobro 4

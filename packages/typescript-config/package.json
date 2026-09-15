@@ -1,0 +1,8 @@
+{
+  "name": "@logo/typescript-config",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    "./base.json": "./base.json"
+  }
+}

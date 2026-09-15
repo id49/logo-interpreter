@@ -1,0 +1,27 @@
+{
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "@logo/logo#build": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "@logo/turtle#build": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "@logo/canvas-renderer#build": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    }
+  }
+}

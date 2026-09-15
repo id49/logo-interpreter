@@ -1,0 +1,5 @@
+to demo
+localmake "x 10
+print :x
+end
+demo
